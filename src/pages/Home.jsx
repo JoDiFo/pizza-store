@@ -2,7 +2,24 @@ import React from "react";
 
 import { Categories, SortPopup, PizzaBlock } from "../components";
 
+import { useSelector } from "react-redux";
+
 function Home({ pizzas }) {
+  const filter = useSelector((state) => state.filter.value);
+  console.log(filter);
+
+  switch (filter.sortBy) {
+    case "popularity":
+      pizzas.sort((a, b) => b.rating - a.rating);
+      break;
+    case "price":
+      pizzas.sort((a, b) => a.price - b.price);
+      break;
+    case "alphabet":
+      pizzas.sort((a, b) => a.name - b.name);
+      break;
+  }
+
   return (
     <div className="container">
       <div className="content__top">
@@ -14,7 +31,13 @@ function Home({ pizzas }) {
       <h2 className="content__title">Все пиццы</h2>
       <div className="content__items">
         {pizzas &&
-          pizzas.map((pizza) => <PizzaBlock key={pizza.id} {...pizza} />)}
+          pizzas.map(
+            (pizza) =>
+              (filter.category === pizza.category ||
+                filter.category === null) && (
+                <PizzaBlock key={pizza.id} {...pizza} />
+              )
+          )}
       </div>
     </div>
   );

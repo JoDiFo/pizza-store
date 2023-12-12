@@ -1,10 +1,15 @@
 import React, { useState } from "react";
 
+import { useDispatch } from "react-redux";
+import { setCategory } from "../redux/filter";
+
 function Categories({ items }) {
   const [selectedItem, setSelectedItem] = useState(null);
+  const dispatch = useDispatch();
 
   const selectItem = (item) => {
     setSelectedItem(item);
+    dispatch(setCategory(item));
   };
 
   return (

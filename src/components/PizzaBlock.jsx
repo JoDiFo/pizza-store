@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import classNames from "classnames";
 
-function PizzaBlock({ imageUrl, name, types, sizes, price }) {
+function PizzaBlock({ imageUrl, name, types, sizes, price, category }) {
   const availableTypes = ["тонкое", "традиционное"];
   const availableSizes = [26, 30, 40];
 

@@ -1,10 +1,15 @@
 import React, { useEffect, useRef, useState } from "react";
 
+import { useDispatch } from "react-redux";
+import { setSortOrder } from "../redux/filter";
+
 function SortPopup({ items }) {
+  const sortItems = ["popularity", "price", "alphabet"];
   const [visible, setVisible] = useState(false);
   const [selectedItem, setSelectedItem] = useState(0);
   const selectedItemName = items[selectedItem];
   const sortRef = useRef();
+  const dispatch = useDispatch();
 
   const toggleVisible = () => {
     setVisible(!visible);
@@ -13,6 +18,7 @@ function SortPopup({ items }) {
   const onSelectItem = (item) => {
     setSelectedItem(item);
     setVisible(false);
+    dispatch(setSortOrder(sortItems[item]));
   };
 
   const handleOutsideClick = (e) => {
