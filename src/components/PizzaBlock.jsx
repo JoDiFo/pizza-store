@@ -61,7 +61,7 @@ function PizzaBlock({ id, imageUrl, name, types, sizes, price }) {
         <div
           className="button button--outline button--add"
           onClick={() => {
-            dispatch(addPizza({ id: id }));
+            dispatch(addPizza({ id: id, price: price }));
             console.log(pizzaCount);
             console.log(pizzaCount.pizzas[id]);
           }}

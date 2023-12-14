@@ -1,8 +1,11 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
 import logo from "../assets/img/pizza-logo.svg";
 
 function Header() {
+  const pizzaCount = useSelector((state) => state.pizzaCounter.value);
+
   return (
     <div className="header">
       <div className="container">
@@ -15,7 +18,7 @@ function Header() {
         </div>
         <div className="header__cart">
           <a href="/cart.html" className="button button--cart">
-            <span>520 ₽</span>
+            <span>{pizzaCount.totalPrice ? pizzaCount.totalPrice : 0} ₽</span>
             <div className="button__delimiter"></div>
             <svg
               width="18"
@@ -46,7 +49,7 @@ function Header() {
                 strokeLinejoin="round"
               />
             </svg>
-            <span>3</span>
+            <span>{pizzaCount.totalCount}</span>
           </a>
         </div>
       </div>

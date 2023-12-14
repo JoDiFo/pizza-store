@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialStateValue = {
   totalCount: 0,
+  totalPrice: 0,
   pizzas: [],
 };
 
@@ -11,6 +12,8 @@ const pizzaCounterSlice = createSlice({
   reducers: {
     addPizza: (state, action) => {
       state.value.totalCount += 1;
+
+      state.value.totalPrice += action.payload.price;
 
       if (state.value.pizzas[action.payload.id]) {
         state.value.pizzas[action.payload.id] += 1;
