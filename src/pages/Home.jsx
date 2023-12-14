@@ -16,7 +16,7 @@ function Home({ pizzas }) {
       pizzas.sort((a, b) => a.price - b.price);
       break;
     case "alphabet":
-      pizzas.sort((a, b) => a.name - b.name);
+      pizzas.sort((a, b) => a.name.toLowerCase() - b.name.toLowerCase());
       break;
   }
 

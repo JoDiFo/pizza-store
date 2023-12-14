@@ -1,12 +1,18 @@
 import React, { useState } from "react";
 import classNames from "classnames";
+import { useSelector, useDispatch } from "react-redux";
+import { addPizza } from "../redux/pizzaCounter";
 
-function PizzaBlock({ imageUrl, name, types, sizes, price, category }) {
+function PizzaBlock({ id, imageUrl, name, types, sizes, price }) {
   const availableTypes = ["тонкое", "традиционное"];
   const availableSizes = [26, 30, 40];
 
   const [selectedType, setSelectedType] = useState(types[0]);
   const [selectedSize, setSelectedSize] = useState(sizes[0]);
+
+  const pizzaCount = useSelector((state) => state.pizzaCounter.value);
+
+  const dispatch = useDispatch();
 
   const onSelectType = (index) => {
     setSelectedType(index);
@@ -52,7 +58,14 @@ function PizzaBlock({ imageUrl, name, types, sizes, price, category }) {
       </div>
       <div className="pizza-block__bottom">
         <div className="pizza-block__price">от {price} ₽</div>
-        <div className="button button--outline button--add">
+        <div
+          className="button button--outline button--add"
+          onClick={() => {
+            dispatch(addPizza({ id: id }));
+            console.log(pizzaCount);
+            console.log(pizzaCount.pizzas[id]);
+          }}
+        >
           <svg
             width="12"
             height="12"
@@ -66,7 +79,7 @@ function PizzaBlock({ imageUrl, name, types, sizes, price, category }) {
             />
           </svg>
           <span>Добавить</span>
-          <i>2</i>
+          <i>{pizzaCount.pizzas[id] ? pizzaCount.pizzas[id] : 0}</i>
         </div>
       </div>
     </div>

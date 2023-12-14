@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialStateValue = {
   category: null,
-  sortBy: "popular",
+  sortBy: "popularity",
 };
 
 const filterSlice = createSlice({
