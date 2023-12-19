@@ -29,7 +29,7 @@ function Home({ pizzas }) {
         <SortPopup items={["популярности", "цене", "алфавиту"]} />
       </div>
       <h2 className="content__title">Все пиццы</h2>
-      <div className="content__items">
+      <div className="content__items--home">
         {pizzas &&
           pizzas.map(
             (pizza) =>
