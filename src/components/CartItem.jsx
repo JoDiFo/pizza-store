@@ -1,21 +1,26 @@
 import React from "react";
 
-function CartItem() {
+import { useDispatch, useSelector } from "react-redux";
+import { addPizza, removePizza, removePizzaType } from "../redux/pizzaCounter";
+
+function CartItem({ id, imageUrl, name, price }) {
+  const pizzaCounter = useSelector((state) => state.pizzaCounter.value);
+  const dispatch = useDispatch();
+
   return (
     <div className="cart__item">
       <div className="cart__item-img">
-        <img
-          className="pizza-block__image"
-          src="https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/b750f576-4a83-48e6-a283-5a8efb68c35d.jpg"
-          alt="Pizza"
-        />
+        <img className="pizza-block__image" src={imageUrl} alt="Pizza" />
       </div>
       <div className="cart__item-info">
-        <h3>Сырный цыпленок</h3>
+        <h3>{name}</h3>
         <p>тонкое тесто, 26 см.</p>
       </div>
       <div className="cart__item-count">
-        <div className="button button--outline button--circle cart__item-count-minus">
+        <div
+          className="button button--outline button--circle cart__item-count-minus"
+          onClick={() => dispatch(removePizza({ id: id, price: price }))}
+        >
           <svg
             width="10"
             height="10"
@@ -33,8 +38,11 @@ function CartItem() {
             />
           </svg>
         </div>
-        <b>2</b>
-        <div className="button button--outline button--circle cart__item-count-plus">
+        <b>{pizzaCounter.pizzas[id]}</b>
+        <div
+          className="button button--outline button--circle cart__item-count-plus"
+          onClick={() => dispatch(addPizza({ id: id, price: price }))}
+        >
           <svg
             width="10"
             height="10"
@@ -54,10 +62,13 @@ function CartItem() {
         </div>
       </div>
       <div className="cart__item-price">
-        <b>770 ₽</b>
+        <b>{price} ₽</b>
       </div>
       <div className="cart__item-remove">
-        <div className="button button--outline button--circle">
+        <div
+          className="button button--outline button--circle"
+          onClick={() => dispatch(removePizzaType({ id: id, price: price }))}
+        >
           <svg
             width="10"
             height="10"

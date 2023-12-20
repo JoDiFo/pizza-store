@@ -23,11 +23,35 @@ const pizzaCounterSlice = createSlice({
     },
 
     removePizza: (state, action) => {
-      state.value -= 1;
+      if (state.value.pizzas[action.payload.id] > 0) {
+        state.value.totalCount -= 1;
+
+        state.value.totalPrice -= action.payload.price;
+
+        state.value.pizzas[action.payload.id] -= 1;
+      }
+    },
+
+    removePizzaType: (state, action) => {
+      const pizzasToRemove = state.value.pizzas[action.payload.id];
+
+      state.value.totalCount -= 1 * pizzasToRemove;
+      state.value.totalPrice -= action.payload.price * pizzasToRemove;
+      state.value.pizzas[action.payload.id] = null;
+
+      // not sure of the next lines of code
+      if (state.value.totalCount === 0) {
+        state.value = initialStateValue;
+      }
+    },
+
+    resetCounter: (state, action) => {
+      state.value = initialStateValue;
     },
   },
 });
 
-export const { addPizza, removePizza } = pizzaCounterSlice.actions;
+export const { addPizza, removePizza, removePizzaType, resetCounter } =
+  pizzaCounterSlice.actions;
 
 export default pizzaCounterSlice.reducer;

@@ -2,12 +2,14 @@ import React from "react";
 
 import { Link } from "react-router-dom";
 
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { resetCounter } from "../redux/pizzaCounter";
 
 import { CartItem } from "./index";
 
 function LoadedCart({ pizzas }) {
   const pizzaCounter = useSelector((state) => state.pizzaCounter.value);
+  const dispatch = useDispatch();
 
   return (
     <div className="cart">
@@ -44,7 +46,7 @@ function LoadedCart({ pizzas }) {
           </svg>
           Корзина
         </h2>
-        <div className="cart__clear">
+        <div className="cart__clear" onClick={() => dispatch(resetCounter())}>
           <svg
             width="20"
             height="20"
@@ -89,7 +91,7 @@ function LoadedCart({ pizzas }) {
       <div className="content__items--cart">
         {pizzas &&
           pizzas.map(
-            (pizza) => pizza.id in pizzaCounter.pizzas && <CartItem />
+            (pizza) => pizzaCounter.pizzas[pizza.id] && <CartItem {...pizza} />
           )}
       </div>
 
