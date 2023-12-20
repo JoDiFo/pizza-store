@@ -22,8 +22,10 @@ function SortPopup({ items }) {
   };
 
   const handleOutsideClick = (e) => {
-    if (!sortRef.current.contains(e.target)) {
-      setVisible(false);
+    if (sortRef.current) {
+      if (!sortRef.current.contains(e.target)) {
+        setVisible(false);
+      }
     }
   };
 

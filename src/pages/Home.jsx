@@ -6,7 +6,6 @@ import { useSelector } from "react-redux";
 
 function Home({ pizzas }) {
   const filter = useSelector((state) => state.filter.value);
-  console.log(filter);
 
   switch (filter.sortBy) {
     case "popularity":
