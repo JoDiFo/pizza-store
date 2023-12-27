@@ -77,7 +77,7 @@ function PizzaBlock({ id, imageUrl, name, types, sizes, price }) {
             />
           </svg>
           <span>Добавить</span>
-          <i>{pizzaCount.pizzas[id] ? pizzaCount.pizzas[id] : 0}</i>
+          <i>{pizzaCount.pizzas[id] || 0}</i>
         </div>
       </div>
     </div>

@@ -6,6 +6,10 @@ import { addPizza, removePizza, removePizzaType } from "../redux/pizzaCounter";
 function CartItem({ id, imageUrl, name, price }) {
   const pizzaCounter = useSelector((state) => state.pizzaCounter.value);
   const dispatch = useDispatch();
+  console.log("rendered pizza:");
+  console.log(id, name, price);
+  console.log(pizzaCounter.pizzas[id]);
+  console.log("-----------------");
 
   return (
     <div className="cart__item">

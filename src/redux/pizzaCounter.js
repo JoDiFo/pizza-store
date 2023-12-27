@@ -30,6 +30,11 @@ const pizzaCounterSlice = createSlice({
 
         state.value.pizzas[action.payload.id] -= 1;
       }
+
+      // not sure of the next lines of code
+      if (state.value.totalCount === 0) {
+        state.value = initialStateValue;
+      }
     },
 
     removePizzaType: (state, action) => {

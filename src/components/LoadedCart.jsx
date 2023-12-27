@@ -10,6 +10,7 @@ import { CartItem } from "./index";
 function LoadedCart({ pizzas }) {
   const pizzaCounter = useSelector((state) => state.pizzaCounter.value);
   const dispatch = useDispatch();
+  // console.log(pizzaCounter.pizzas);
 
   return (
     <div className="cart">
@@ -90,8 +91,12 @@ function LoadedCart({ pizzas }) {
 
       <div className="content__items--cart">
         {pizzas &&
-          pizzas.map(
-            (pizza) => pizzaCounter.pizzas[pizza.id] && <CartItem {...pizza} />
+          pizzas.map((pizza) =>
+            pizzaCounter.pizzas[pizza.id] ? (
+              <CartItem key={`${pizza.id}_${pizza.name}`} {...pizza} />
+            ) : (
+              ""
+            )
           )}
       </div>
 
