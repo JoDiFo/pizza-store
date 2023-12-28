@@ -3,14 +3,14 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import { useSelector, useDispatch } from "react-redux";
-import { resetCounter } from "../redux/pizzaCounter";
+import { resetCounter } from "../redux/pizzaStorageSlice";
 
 import { CartItem } from "./index";
 
 function LoadedCart({ pizzas }) {
-  const pizzaCounter = useSelector((state) => state.pizzaCounter.value);
+  const pizzaStorage = useSelector((state) => state.pizzaStorage.value);
   const dispatch = useDispatch();
-  // console.log(pizzaCounter.pizzas);
+  console.log(pizzaStorage.pizzas);
 
   return (
     <div className="cart">
@@ -92,7 +92,7 @@ function LoadedCart({ pizzas }) {
       <div className="content__items--cart">
         {pizzas &&
           pizzas.map((pizza) =>
-            pizzaCounter.pizzas[pizza.id] ? (
+            pizzaStorage.pizzas[pizza.id] ? (
               <CartItem key={`${pizza.id}_${pizza.name}`} {...pizza} />
             ) : (
               ""
@@ -103,10 +103,10 @@ function LoadedCart({ pizzas }) {
       <div className="cart__bottom">
         <div className="cart__bottom-details">
           <span>
-            Всего пицц: <b>{pizzaCounter.totalCount} шт.</b>
+            Всего пицц: <b>{pizzaStorage.totalCount} шт.</b>
           </span>
           <span>
-            Сумма заказа: <b>{pizzaCounter.totalPrice} ₽</b>
+            Сумма заказа: <b>{pizzaStorage.totalPrice} ₽</b>
           </span>
         </div>
         <div className="cart__bottom-buttons">

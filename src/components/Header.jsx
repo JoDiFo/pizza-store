@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import logo from "../assets/img/pizza-logo.svg";
 
 function Header() {
-  const pizzaCount = useSelector((state) => state.pizzaCounter.value);
+  const pizzaCount = useSelector((state) => state.pizzaStorage.value);
 
   return (
     <div className="header">

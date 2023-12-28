@@ -5,12 +5,12 @@ import { useSelector } from "react-redux";
 import { EmptyCart, LoadedCart } from "../components";
 
 function Cart({ pizzas }) {
-  const pizzaCounter = useSelector((state) => state.pizzaCounter.value);
+  const pizzaStorage = useSelector((state) => state.pizzaStorage.value);
 
   return (
     <div className="content">
       <div className="container container--cart">
-        {pizzaCounter.pizzas.length === 0 ? (
+        {pizzaStorage.totalCount === 0 ? (
           <EmptyCart />
         ) : (
           <LoadedCart pizzas={pizzas} />

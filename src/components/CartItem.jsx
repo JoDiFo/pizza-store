@@ -1,15 +1,15 @@
 import React from "react";
 
 import { useDispatch, useSelector } from "react-redux";
-import { addPizza, removePizza, removePizzaType } from "../redux/pizzaCounter";
+import {
+  addPizza,
+  removePizza,
+  removePizzaType,
+} from "../redux/pizzaStorageSlice";
 
 function CartItem({ id, imageUrl, name, price }) {
-  const pizzaCounter = useSelector((state) => state.pizzaCounter.value);
+  const pizzaStorage = useSelector((state) => state.pizzaStorage.value);
   const dispatch = useDispatch();
-  console.log("rendered pizza:");
-  console.log(id, name, price);
-  console.log(pizzaCounter.pizzas[id]);
-  console.log("-----------------");
 
   return (
     <div className="cart__item">
@@ -42,7 +42,7 @@ function CartItem({ id, imageUrl, name, price }) {
             />
           </svg>
         </div>
-        <b>{pizzaCounter.pizzas[id]}</b>
+        <b>{pizzaStorage.pizzas[id]}</b>
         <div
           className="button button--outline button--circle cart__item-count-plus"
           onClick={() => dispatch(addPizza({ id: id, price: price }))}
