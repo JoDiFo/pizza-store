@@ -3,7 +3,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import { useSelector, useDispatch } from "react-redux";
-import { resetCounter } from "../redux/pizzaStorageSlice";
+import { resetStorage } from "../redux/pizzaStorageSlice";
 
 import { CartItem } from "./index";
 
@@ -47,7 +47,7 @@ function LoadedCart({ pizzas }) {
           </svg>
           Корзина
         </h2>
-        <div className="cart__clear" onClick={() => dispatch(resetCounter())}>
+        <div className="cart__clear" onClick={() => dispatch(resetStorage())}>
           <svg
             width="20"
             height="20"

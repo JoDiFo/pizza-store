@@ -46,13 +46,22 @@ const pizzaStorageSlice = createSlice({
       }
     },
 
-    resetCounter: (state) => {
+    resetStorage: (state) => {
       state.value = initialStateValue;
+    },
+
+    setStorage: (state, action) => {
+      state.value = action.payload || initialStateValue;
     },
   },
 });
 
-export const { addPizza, removePizza, removePizzaType, resetCounter } =
-  pizzaStorageSlice.actions;
+export const {
+  addPizza,
+  removePizza,
+  removePizzaType,
+  resetStorage,
+  setStorage,
+} = pizzaStorageSlice.actions;
 
 export default pizzaStorageSlice.reducer;

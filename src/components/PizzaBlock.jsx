@@ -22,8 +22,6 @@ function PizzaBlock({ id, imageUrl, name, types, sizes, price }) {
     setSelectedSize(availableSizes[index]);
   };
 
-  console.log(pizzaStorage.pizzas);
-
   return (
     <div className="pizza-block">
       <img className="pizza-block__image" src={imageUrl} alt="Pizza" />
