@@ -7,6 +7,15 @@ import { useSelector } from "react-redux";
 function Home({ pizzas }) {
   const filter = useSelector((state) => state.filter.value);
 
+  const categoryItems = [
+    "Мясные",
+    "Вегетарианская",
+    "Гриль",
+    "Острые",
+    "Закрытые",
+  ];
+  const sortItems = ["популярности", "цене", "алфавиту"];
+
   switch (filter.sortBy) {
     case "popularity":
       pizzas.sort((a, b) => b.rating - a.rating);
@@ -15,17 +24,23 @@ function Home({ pizzas }) {
       pizzas.sort((a, b) => a.price - b.price);
       break;
     case "alphabet":
-      pizzas.sort((a, b) => a.name.toLowerCase() - b.name.toLowerCase());
+      pizzas.sort((a, b) => {
+        if (a.name.toLowerCase() < b.name.toLowerCase()) {
+          return -1;
+        }
+        if (a.name.toLowerCase() > b.name.toLowerCase()) {
+          return 1;
+        }
+        return 0;
+      });
       break;
   }
 
   return (
     <div className="container">
       <div className="content__top">
-        <Categories
-          items={["Мясные", "Вегетарианская", "Гриль", "Острые", "Закрытые"]}
-        />
-        <SortPopup items={["популярности", "цене", "алфавиту"]} />
+        <Categories items={categoryItems} />
+        <SortPopup items={sortItems} />
       </div>
       <h2 className="content__title">Все пиццы</h2>
       <div className="content__items--home">

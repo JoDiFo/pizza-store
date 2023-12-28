@@ -20,7 +20,7 @@ function Header() {
         <div className="header__cart">
           <Link to="/cart">
             <div href="/cart.html" className="button button--cart">
-              <span>{pizzaCount.totalPrice ? pizzaCount.totalPrice : 0} ₽</span>
+              <span>{pizzaCount.totalPrice || 0} ₽</span>
               <div className="button__delimiter"></div>
               <svg
                 width="18"
