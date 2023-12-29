@@ -132,7 +132,12 @@ function LoadedCart({ pizzas }) {
             </div>
           </Link>
 
-          <div className="button pay-btn">
+          <div
+            className="button pay-btn"
+            onClick={() => {
+              alert("Заказ отправлен");
+            }}
+          >
             <span>Оплатить сейчас</span>
           </div>
         </div>

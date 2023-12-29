@@ -7,13 +7,7 @@ import { useSelector } from "react-redux";
 function Home({ pizzas }) {
   const filter = useSelector((state) => state.filter.value);
 
-  const categoryItems = [
-    "Мясные",
-    "Вегетарианская",
-    "Гриль",
-    "Острые",
-    "Закрытые",
-  ];
+  const categoryItems = ["Мясные", "Вегетарианская", "Гриль", "Острые"];
   const sortItems = ["популярности", "цене", "алфавиту"];
 
   switch (filter.sortBy) {
@@ -33,6 +27,9 @@ function Home({ pizzas }) {
         }
         return 0;
       });
+      break;
+    default:
+      pizzas.sort((a, b) => b.rating - a.rating);
       break;
   }
 
