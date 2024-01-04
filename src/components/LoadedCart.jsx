@@ -106,7 +106,7 @@ function LoadedCart({ pizzas }) {
             Всего пицц: <b>{pizzaStorage.totalCount} шт.</b>
           </span>
           <span>
-            Сумма заказа: <b>{pizzaStorage.totalPrice} $</b>
+            Сумма заказа: <b>{pizzaStorage.totalPrice} $$</b>
           </span>
         </div>
         <div className="cart__bottom-buttons">
